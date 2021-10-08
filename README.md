@@ -4,7 +4,7 @@ Pretty error reporting for Formidable.
 
 <br />
 
-![Uh-oh!](youch.png)
+![Uh-oh!](https://raw.githubusercontent.com/formidablejs/pretty-errors/main/youch-img.png)
 
 ------
 
