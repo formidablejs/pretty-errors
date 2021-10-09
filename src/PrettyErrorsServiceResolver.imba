@@ -12,6 +12,10 @@ import Youch from 'youch'
 export default class PrettyErrorsServiceResolver < ServiceResolver
 
 	def boot
+		self.app.addHook 'onMaintenance', do(response\Error, request\FormRequest, reply\FastifyReply)
+			if response instanceof Error && !request.expectsJson!
+				self.handleProductionErrors(response, request, reply)
+
 		self.app.onResponse do(response, request\FormRequest, reply\FastifyReply)
 			if response instanceof Error && !request.expectsJson!
 				self.errorHandler(response, request, reply)
