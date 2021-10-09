@@ -10,7 +10,7 @@
   "homepage": "https://formidablejs.org",
   "repository": "https://github.com/formidablejs/pretty-errors",
   "files": [
-	  "assets",
+    "assets",
     "lib",
     "types"
   ],
