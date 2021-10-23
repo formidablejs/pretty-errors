@@ -1,10 +1,7 @@
-import {
-	FormRequest
-	FastifyReply
-	helpers
-	ServiceResolver
-} from '@formidablejs/framework'
-
+import { FastifyReply } from '@formidablejs/framework'
+import { FormRequest } from '@formidablejs/framework'
+import { helpers } from '@formidablejs/framework'
+import { ServiceResolver } from '@formidablejs/framework'
 import fs from 'fs'
 import path from 'path'
 import Youch from 'youch'
