@@ -1,4 +1,6 @@
 export default class PrettyErrorsServiceResolver extends ServiceResolver {
+    boot(): import("@formidablejs/framework").Application;
+    modifyHeaders(response: any, request: any, reply: any): any;
     /**
     @param {Error} response
     @param {FormRequest} request
