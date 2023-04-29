@@ -3,6 +3,7 @@ import { FormRequest } from '@formidablejs/framework'
 import { helpers } from '@formidablejs/framework'
 import { ServiceResolver } from '@formidablejs/framework'
 import { ValidationException } from '@formidablejs/framework'
+import { Response } from './Response'
 import fs from 'fs'
 import path from 'path'
 import Youch from 'youch'
@@ -47,10 +48,7 @@ export default class PrettyErrorsServiceResolver < ServiceResolver
 			html = html.replace(/{{statusCode}}/g, statusCode)
 			html = html.replace(/{{message}}/g, message)
 
-		return reply.header('Content-Type', 'text/html')
-			.code(statusCode)
-			.send(html)
-			.sent = true
+		new Response(html, statusCode)
 
 	def handleDevelopmentErrors response\Error, request\FormRequest, reply\FastifyReply
 		if helpers.isEmpty(response.status)
@@ -58,7 +56,6 @@ export default class PrettyErrorsServiceResolver < ServiceResolver
 
 		const youch = new Youch(response, request.request.raw)
 
-		return youch.toHTML!.then do(html)
-			reply.header('Content-Type', 'text/html')
-			reply.send(html)
-			reply.sent = true
+		const html = await youch.toHTML!
+
+		new Response(html, response.status)
