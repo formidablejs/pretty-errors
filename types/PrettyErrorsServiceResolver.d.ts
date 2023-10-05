@@ -6,7 +6,7 @@ export default class PrettyErrorsServiceResolver extends ServiceResolver {
     @param {FormRequest} request
     @param {FastifyReply} reply
     */
-    errorHandler(response: Error, request: FormRequest, reply: FastifyReply): Response | Promise<Response>;
+    errorHandler(response: Error, request: FormRequest, reply: FastifyReply): import("./HtmlResponse").HtmlResponse | Response | Promise<Response>;
     /**
     @param {Error} response
     @param {FormRequest} request
