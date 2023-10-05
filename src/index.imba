@@ -1,7 +1,11 @@
 import { Response } from './Response'
+import { HtmlResponse } from './HtmlResponse'
+import { sendError } from './error'
 import PrettyErrorsServiceResolver from './PrettyErrorsServiceResolver'
 
 export {
-	PrettyErrorsServiceResolver
 	Response
+	HtmlResponse
+	sendError
+	PrettyErrorsServiceResolver
 }
