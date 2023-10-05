@@ -1,3 +1,5 @@
-import PrettyErrorsServiceResolver from "./PrettyErrorsServiceResolver";
 import { Response } from "./Response";
-export { PrettyErrorsServiceResolver, Response };
+import { HtmlResponse } from "./HtmlResponse";
+import { sendError } from "./error";
+import PrettyErrorsServiceResolver from "./PrettyErrorsServiceResolver";
+export { Response, HtmlResponse, sendError, PrettyErrorsServiceResolver };
