@@ -336,18 +336,21 @@ export def sendError error\Error, request\FormRequest, reply\FastifyReply
 
 	error.stack.split('\n').map(do(line)
 		if line.startsWith('    at ')
-			const file = line.split('(')[1].split(')')[0].split(':')
-			const path = file.slice(0, file.length - 2).join(':').slice(process.cwd().length + 1)
-			const lineNo = file[file.length - 2]
-			const columnNo = file[file.length - 1]
-			const method = line.split(' ')[5]
+			let file = line.split('(')[1]
 
-			stack.push({
-				path,
-				lineNo,
-				columnNo,
-				method
-			})
+			if file
+				file = file.split(')')[0].split(':')
+				const path = file.slice(0, file.length - 2).join(':').slice(process.cwd().length + 1)
+				const lineNo = file[file.length - 2]
+				const columnNo = file[file.length - 1]
+				const method = line.split(' ')[5]
+
+				stack.push({
+					path,
+					lineNo,
+					columnNo,
+					method
+				})
 	)
 
 	new HtmlResponse(html.replace('{{data}}', JSON.stringify({
