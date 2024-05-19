@@ -31,14 +31,15 @@ yarn add @formidablejs/pretty-errors
 
 ## Configuration
 
-Add `PrettyErrorsServiceResolver` in the `config/app.imba` config under `resolvers`:
+Add `PrettyErrorsServiceResolver` in the `bootstrap/resolvers.{imba,ts}`:
 
 ```js
+import { PrettyErrorsServiceResolver } from '@formidablejs/pretty-errors'
 ...
 
-resolvers: {
+export default [
 	...
-	require('@formidablejs/pretty-errors').PrettyErrorsServiceResolver
+	PrettyErrorsServiceResolver
 ```
 
 ## Credits
