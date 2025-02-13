@@ -69,7 +69,7 @@ export default class PrettyErrorsServiceResolver < ServiceResolver
 		new Response(html, response.status)
 
 	def cleanUpErrorStack error\Error
-		if process.env.FRAMEWORK_DEBUG == 'true' || process.env.FRAMEWORK_DEBUG == true
+		if self.app.config.get('app.framework_debug', false) == true
 			return error
 
 		if error instanceof Error
