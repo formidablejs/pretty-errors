@@ -19,6 +19,10 @@ export default class PrettyErrorsServiceResolver extends ServiceResolver {
     @param {FastifyReply} reply
     */
     handleDevelopmentErrors(response: Error, request: FormRequest, reply: FastifyReply): Promise<Response>;
+    /**
+    @param {Error} error
+    */
+    cleanUpErrorStack(error: Error): Error;
 }
 import { ServiceResolver } from "@formidablejs/framework";
 import { FormRequest } from "@formidablejs/framework";

@@ -7,7 +7,6 @@ import { Response } from './Response'
 import { sendError } from './error'
 import fs from 'fs'
 import path from 'path'
-import Youch from 'youch'
 
 export default class PrettyErrorsServiceResolver < ServiceResolver
 
@@ -54,8 +53,32 @@ export default class PrettyErrorsServiceResolver < ServiceResolver
 		if helpers.isEmpty(response.status)
 			response.status = 500
 
-		const youch = new Youch(response, request.request.raw)
+		# patch crypto
+		const crypto = require('crypto')
+		globalThis.crypto = crypto
 
-		const html = await youch.toHTML!
+		# use import instead of require
+		const { Youch } = await import('youch')
+		const youch = new Youch()
+
+		const html = await youch.toHTML(cleanUpErrorStack(response), {
+			title: 'Internal Server Error',
+			request: request.request.raw,
+		})
 
 		new Response(html, response.status)
+
+	def cleanUpErrorStack error\Error
+		if self.app.config.get('app.framework_debug', false) == true
+			return error
+
+		if error instanceof Error
+			if !error.stack then return error
+
+			const regex = /at (Object\.getResponse \[as default\]|Object\.handler|preHandlerCallback|next|handleResolve) \([^\)]+(\/(node_modules\/@formidablejs\/framework\/lib\/Http\/Kernel\/getResponse\.js|node_modules\/@formidablejs\/framework\/lib\/Http\/Kernel\.js|fastify\/lib\/handleRequest\.js|fastify\/lib\/hooks\.js))[^)]+\)/g
+
+			error.stack = error.stack.replace(regex, '').trim()
+
+			return error
+
+		return error

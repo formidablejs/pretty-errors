@@ -1,6 +1,6 @@
 {
   "name": "@formidablejs/pretty-errors",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Pretty error reporting for Formidable",
   "author": "Donald Pakkies <donaldpakkies@gmail.com>",
   "license": "MIT",
@@ -32,6 +32,6 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "youch": "^3.3.3"
+    "youch": "^4.1.0-beta.5"
   }
 }
