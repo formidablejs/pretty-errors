@@ -1,6 +1,5 @@
 import { FastifyReply } from '@formidablejs/framework'
 import { FormRequest } from '@formidablejs/framework'
-import { config } from '@formidablejs/framework'
 import { helpers } from '@formidablejs/framework'
 import { ServiceResolver } from '@formidablejs/framework'
 import { ValidationException } from '@formidablejs/framework'
