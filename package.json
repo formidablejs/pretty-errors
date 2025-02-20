@@ -1,6 +1,6 @@
 {
   "name": "@formidablejs/pretty-errors",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Pretty error reporting for Formidable",
   "author": "Donald Pakkies <donaldpakkies@gmail.com>",
   "license": "MIT",
