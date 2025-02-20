@@ -54,8 +54,9 @@ export default class PrettyErrorsServiceResolver < ServiceResolver
 			response.status = 500
 
 		# patch crypto
-		const crypto = require('crypto')
-		globalThis.crypto = crypto
+		if !globalThis.crypto
+			const crypto = require('crypto')
+			globalThis.crypto = crypto
 
 		# use import instead of require
 		const { Youch } = await import('youch')
